@@ -1,0 +1,15 @@
+{
+    "name": "search-service",
+    "version": "0.1.0",
+    "vernum": 0,
+    "description": "Server-side API service for querying LiveG's Open Search Index..",
+    "main": "src/main.js",
+    "author": "LiveG Technologies",
+    "repository": "https://github.com/LiveGTech/Search-Service",
+    "scripts": {
+        "search": "node src/main.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
