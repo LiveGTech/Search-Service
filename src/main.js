@@ -99,6 +99,7 @@ async function performSearchQuery(keywords, keywordWeighting = 0.5, referenceWei
     var intersectionEntries = [];
     var unmatchedIndexes = await Promise.all(keywords.map((keyword) => indexes.getData(`${keyword}.tsv`)));
     var matchedIndexes = {};
+    var deduplicatedKeywords = [...new Set(keywords)];
     var unindexedKeywords = [];
     var intersectionEntries = [];
 
@@ -137,11 +138,19 @@ async function performSearchQuery(keywords, keywordWeighting = 0.5, referenceWei
         var queryKeywordsMatch = 0;
         var queryKeywordsNoMatch = 0;
 
+        var keywordsLeft = [...keywords];
+
         entry.title.split(" ").forEach(function(titleKeyword) {
             titleKeyword = titleKeyword.toLocaleLowerCase();
 
-            if (keywords.includes(titleKeyword)) {
+            if (keywordsLeft.includes(titleKeyword)) {
                 queryKeywordsMatch++;
+
+                var keywordIndex = keywordsLeft.indexOf(titleKeyword);
+
+                if (keywordIndex >= 0) {
+                    keywordsLeft.splice(keywordIndex, 1);
+                }
             } else {
                 queryKeywordsNoMatch++;
             }
