@@ -10,7 +10,7 @@
         "search": "node src/main.js"
     },
     "dependencies": {
-        "@liveg/qlc": "^0.1.0",
+        "@liveg/qlc": "^0.1.1",
         "express": "^4.18.2"
     }
 }
